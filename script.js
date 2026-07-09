@@ -1,15 +1,7 @@
-/* ==========================================================================
-   Cooperativa 20 Milhas — script.js
-   IMPORTANTE: troque WEBAPP_URL abaixo pela URL do seu Google Apps Script
-   depois de publicá-lo (veja instruções em apps-script.gs).
-   ========================================================================== */
+const WEBAPP_URL = "COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT_WEB_APP";
 
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbw9L-KnbifuPLwY6iq0X4isIM-WX6oj_JWUPr6MZ2AEqN2nq0ty850L0a31isi8qnHeig/exec";
-
-/* -------- Ano no rodapé -------- */
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* -------- Aviso de cookies -------- */
 (function cookieNote(){
   const note = document.getElementById("cookie-note");
   const btn = document.getElementById("cookie-ok");
@@ -22,9 +14,8 @@ document.getElementById("year").textContent = new Date().getFullYear();
   });
 })();
 
-/* -------- Registro de visita (uma vez por sessão) -------- */
 async function registrarVisita() {
-  if (!WEBAPP_URL || WEBAPP_URL.startsWith("COLE_AQUI")) return; // ainda não configurado
+  if (!WEBAPP_URL || WEBAPP_URL.startsWith("COLE_AQUI")) return;
   if (sessionStorage.getItem("visitLogged") === "1") return;
 
   const payload = {
@@ -38,7 +29,7 @@ async function registrarVisita() {
   try {
     await fetch(WEBAPP_URL, {
       method: "POST",
-      mode: "no-cors", // Apps Script Web Apps não respondem CORS por padrão
+      mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
     });
@@ -49,7 +40,88 @@ async function registrarVisita() {
 }
 registrarVisita();
 
-/* -------- Formulário de contato / captação de cliente -------- */
+const WHATSAPP_PADRAO = "5511000000000";
+
+function idDoDrive(url) {
+  const m = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
+  return m ? m[1] : null;
+}
+
+function urlDaFoto(url) {
+  if (!url) return "";
+  if (url.includes("drive.google.com")) {
+    const id = idDoDrive(url);
+    if (id) return `https://drive.google.com/uc?export=view&id=${id}`;
+  }
+  return url;
+}
+
+async function carregarConteudo() {
+  if (!WEBAPP_URL || WEBAPP_URL.startsWith("COLE_AQUI")) return;
+
+  try {
+    const res = await fetch(WEBAPP_URL, { method: "GET" });
+    const data = await res.json();
+    renderGaleria(data.galeria || []);
+    renderVagas(data.vagas || []);
+    renderOfertas(data.ofertas || []);
+  } catch (err) {
+    console.warn("Não foi possível carregar conteúdo da planilha:", err);
+  }
+}
+
+function renderGaleria(itens) {
+  const grid = document.getElementById("gallery-grid");
+  if (!itens.length) {
+    grid.innerHTML = `<figure><span>Nenhuma foto cadastrada ainda</span></figure>`;
+    return;
+  }
+  grid.innerHTML = itens.map(item => `
+    <figure>
+      <img src="${urlDaFoto(item.foto)}" alt="${item.legenda || 'Foto da cooperativa'}" loading="lazy">
+    </figure>
+  `).join("");
+}
+
+function renderVagas(itens) {
+  const list = document.getElementById("jobs-list");
+  if (!itens.length) {
+    list.innerHTML = `<div class="job"><p>Nenhuma vaga aberta no momento.</p></div>`;
+    return;
+  }
+  list.innerHTML = itens.map(item => {
+    const numero = (item.linkWhatsapp || WHATSAPP_PADRAO).replace(/\D/g, "");
+    const texto = encodeURIComponent(`Quero me candidatar à vaga de ${item.cargo}`);
+    return `
+      <div class="job">
+        <div>
+          <h3>${item.cargo}</h3>
+          <p>${item.descricao}</p>
+          ${item.tag1 ? `<span class="tag">${item.tag1}</span>` : ""}
+          ${item.tag2 ? `<span class="tag">${item.tag2}</span>` : ""}
+        </div>
+        <a class="btn ghost" href="https://wa.me/${numero}?text=${texto}" target="_blank" rel="noopener">Candidatar-se</a>
+      </div>`;
+  }).join("");
+}
+
+function renderOfertas(itens) {
+  const list = document.getElementById("offers-list");
+  if (!itens.length) {
+    list.innerHTML = `<div class="offer"><p>Nenhuma oferta ativa no momento.</p></div>`;
+    return;
+  }
+  list.innerHTML = itens.map(item => `
+    <div class="offer">
+      <div class="pct">${item.numero}</div>
+      <h3>${item.titulo}</h3>
+      <p>${item.descricao}</p>
+    </div>
+  `).join("");
+}
+
+carregarConteudo();
+
 const form = document.getElementById("lead-form");
 const status = document.getElementById("form-status");
 
@@ -58,7 +130,6 @@ form.addEventListener("submit", async (e) => {
   status.textContent = "";
   status.className = "";
 
-  // honeypot: se o campo invisível veio preenchido, é bot — ignora silenciosamente
   const honeypot = form.website.value.trim();
   if (honeypot !== "") {
     status.textContent = "Enviado!";
