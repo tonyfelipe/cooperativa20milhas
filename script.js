@@ -1,39 +1,115 @@
-/**
- * COMO INSTALAR:
- * 1. Abra a planilha (link que você me passou) → Extensões → Apps Script
- * 2. Apague o conteúdo padrão e cole tudo isto
- * 3. Implantar → Nova implantação → tipo "App da Web"
- *    Executar como: Eu | Quem acessa: Qualquer pessoa
- * 4. Copie a URL gerada e cole em WEBAPP_URL no script.js
- */
+/* ==========================================================================
+   Cooperativa 20 Milhas — script.js
+   IMPORTANTE: troque WEBAPP_URL abaixo pela URL do seu Google Apps Script
+   depois de publicá-lo (veja instruções em apps-script.gs).
+   ========================================================================== */
 
-const SHEET_ID = "1BiwZdXF5TsYF5s0l7TvB1W1UX4ikvHRaahBZQKjuG9M";
+const WEBAPP_URL = "COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT_WEB_APP";
 
-function doPost(e) {
+/* -------- Ano no rodapé -------- */
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* -------- Aviso de cookies -------- */
+(function cookieNote(){
+  const note = document.getElementById("cookie-note");
+  const btn = document.getElementById("cookie-ok");
+  if (localStorage.getItem("cookieOk") === "1") {
+    note.style.display = "none";
+  }
+  btn.addEventListener("click", () => {
+    localStorage.setItem("cookieOk", "1");
+    note.style.display = "none";
+  });
+})();
+
+/* -------- Registro de visita (uma vez por sessão) -------- */
+async function registrarVisita() {
+  if (!WEBAPP_URL || WEBAPP_URL.startsWith("COLE_AQUI")) return; // ainda não configurado
+  if (sessionStorage.getItem("visitLogged") === "1") return;
+
+  const payload = {
+    tipo: "visita",
+    pagina: window.location.pathname,
+    referencia: document.referrer || "direto",
+    idioma: navigator.language,
+    dataHora: new Date().toISOString()
+  };
+
   try {
-    const data = JSON.parse(e.postData.contents);
-    const ss = SpreadsheetApp.openById(SHEET_ID);
-
-    if (data.tipo === "visita") {
-      const sheet = getOrCreateSheet(ss, "Visitas", ["Data/Hora", "Página", "Origem", "Idioma"]);
-      sheet.appendRow([data.dataHora || new Date().toISOString(), data.pagina || "", data.referencia || "", data.idioma || ""]);
-    } else if (data.tipo === "cliente") {
-      const sheet = getOrCreateSheet(ss, "Clientes", ["Data/Hora", "Nome", "Telefone", "Mensagem"]);
-      sheet.appendRow([data.dataHora || new Date().toISOString(), data.nome || "", data.telefone || "", data.mensagem || ""]);
-    }
-
-    return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
+    await fetch(WEBAPP_URL, {
+      method: "POST",
+      mode: "no-cors", // Apps Script Web Apps não respondem CORS por padrão
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+    sessionStorage.setItem("visitLogged", "1");
   } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ ok: false, erro: String(err) })).setMimeType(ContentService.MimeType.JSON);
+    console.warn("Não foi possível registrar a visita:", err);
   }
 }
+registrarVisita();
 
-function getOrCreateSheet(ss, name, headers) {
-  let sheet = ss.getSheetByName(name);
-  if (!sheet) {
-    sheet = ss.insertSheet(name);
-    sheet.appendRow(headers);
-    sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
+/* -------- Formulário de contato / captação de cliente -------- */
+const form = document.getElementById("lead-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  status.textContent = "";
+  status.className = "";
+
+  // honeypot: se o campo invisível veio preenchido, é bot — ignora silenciosamente
+  const honeypot = form.website.value.trim();
+  if (honeypot !== "") {
+    status.textContent = "Enviado!";
+    status.className = "ok";
+    form.reset();
+    return;
   }
-  return sheet;
-}
+
+  const nome = form.nome.value.trim();
+  const telefone = form.telefone.value.trim();
+  const mensagem = form.mensagem.value.trim();
+
+  if (nome.length < 2 || telefone.length < 8) {
+    status.textContent = "Confira o nome e o telefone antes de enviar.";
+    status.className = "err";
+    return;
+  }
+
+  if (!WEBAPP_URL || WEBAPP_URL.startsWith("COLE_AQUI")) {
+    status.textContent = "Painel ainda não configurado. Fale pelo WhatsApp por enquanto.";
+    status.className = "err";
+    return;
+  }
+
+  const payload = {
+    tipo: "cliente",
+    nome,
+    telefone,
+    mensagem,
+    dataHora: new Date().toISOString()
+  };
+
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+
+  try {
+    await fetch(WEBAPP_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+    status.textContent = "Recebido! Em breve entramos em contato.";
+    status.className = "ok";
+    form.reset();
+  } catch (err) {
+    status.textContent = "Não deu pra enviar agora. Tente pelo WhatsApp.";
+    status.className = "err";
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Enviar dados";
+  }
+});
