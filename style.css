@@ -210,3 +210,25 @@ h3{ font-size: 1.25rem; }
   font-weight: 600;
 }
 .main-nav a{ color: var(--muted); transition: color .18s ease
+/* ==========================================
+   APENAS COLE NO FINAL DO SEU STYLE.CSS
+   ========================================== */
+#minha-galeria, #vagas-emprego, #promocoes {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+#acesso-admin {
+    text-align: center;
+    padding: 15px;
+}
+#acesso-admin a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+#assinatura-rodape {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+}
