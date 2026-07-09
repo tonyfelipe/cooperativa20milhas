@@ -1,0 +1,15 @@
+function doPost(e) {
+  // Conecta direto na sua planilha pelo ID fornecido
+  var sheet = SpreadsheetApp.openById("1BiwZdXF5TsYF5s0l7TvB1W1UX4ikvHRaahBZQKjuG9M").getActiveSheet();
+  
+  // Pega os dados enviados pelo site
+  var name = e.parameter.name || "Não informado";
+  var contact = e.parameter.contact || "Não informado";
+  var city = e.parameter.city || "Não identificada";
+  var ip = e.parameter.ip || "Não identificado";
+  
+  // Adiciona uma nova linha com: Data/Hora, Nome, Contato, Cidade, IP
+  sheet.appendRow([new Date(), name, contact, city, ip]);
+  
+  return ContentService.createTextOutput("Sucesso").setMimeType(ContentService.MimeType.TEXT);
+}
