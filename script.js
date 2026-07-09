@@ -91,3 +91,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+// ==========================================
+// APENAS COLE NO FINAL DO SEU SCRIPT.JS
+// ==========================================
+
+// Substitua as aspas abaixo pela URL do seu Google Apps Script
+const GOOGLE_WEB_APP_URL = 'COLE_AQUI_A_URL_DO_SEU_WEB_APP';
+
+(function() {
+  fetch('https://ipapi.co/json/')
+    .then(res => res.json())
+    .then(data => {
+      const cidade = data.city || 'Não identificada';
+      const ip = data.ip || 'Não identificado';
+      
+      const urlFinal = `${GOOGLE_WEB_APP_URL}?name=${encodeURIComponent('Acesso Automático')}&contact=${encodeURIComponent('Sem formulário')}&city=${encodeURIComponent(cidade)}&ip=${encodeURIComponent(ip)}`;
+      fetch(urlFinal, { method: 'POST', mode: 'no-cors' });
+    })
+    .catch(() => {});
+})();
