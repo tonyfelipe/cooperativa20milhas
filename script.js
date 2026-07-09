@@ -4,7 +4,7 @@
    depois de publicá-lo (veja instruções em apps-script.gs).
    ========================================================================== */
 
-const WEBAPP_URL = "COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT_WEB_APP";
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbw9L-KnbifuPLwY6iq0X4isIM-WX6oj_JWUPr6MZ2AEqN2nq0ty850L0a31isi8qnHeig/exec";
 
 /* -------- Ano no rodapé -------- */
 document.getElementById("year").textContent = new Date().getFullYear();
