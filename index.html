@@ -3,403 +3,410 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cooperativa 20 Milhas — Motofrete com Responsabilidade, Agilidade e Confiança</title>
-<meta name="description" content="Cooperativa 20 Milhas: serviço de motofrete e delivery no Litoral, Interior e São Paulo. Responsabilidade, agilidade e confiança em cada entrega.">
+<title>Cooperativa 20 Milhas — Entregas em São Paulo</title>
+<meta name="description" content="Cooperativa de entregas rápidas na Grande São Paulo. Chame pelo WhatsApp e receba com agilidade.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17181c;
+    --paper:#fbfbf9;
+    --paper-alt:#f2f0ea;
+    --signal:#e8491d;
+    --signal-dark:#c23a15;
+    --graphite:#6b6e76;
+    --line:#e3e1d9;
+    --white:#ffffff;
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Bebas Neue', 'Inter', sans-serif;
+    letter-spacing:0.02em;
+    line-height:0.95;
+    font-weight:400;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--signal); font-weight:500; margin-bottom:10px;
+  }
+  .eyebrow::before{content:"//"; color:var(--signal);}
+  section{padding:72px 0; position:relative;}
+  .alt{background:var(--paper-alt);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ink); color:var(--white);
+    padding:14px 26px; border-radius:var(--radius);
+    text-decoration:none; font-weight:600; font-size:15px;
+    border:1px solid var(--ink); cursor:pointer;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{background:var(--signal); border-color:var(--signal); transform:translateY(-2px);}
+  .btn.ghost{background:transparent; color:var(--ink);}
+  .btn.ghost:hover{background:var(--ink); color:var(--white);}
+
+  /* ROTA — elemento de assinatura: uma linha de rota tracejada que costura a página */
+  .route{
+    position:absolute; left:50%; top:0; bottom:0; width:2px;
+    transform:translateX(-50%);
+    background-image:linear-gradient(var(--ink) 60%, transparent 0%);
+    background-size:2px 14px; background-repeat:repeat-y;
+    opacity:.12; z-index:0; pointer-events:none;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .route{ animation: route-flow 3s linear infinite; }
+  }
+  @keyframes route-flow{ to{ background-position-y:-28px; } }
+
+  /* HEADER */
+  header{
+    position:sticky; top:0; z-index:50; background:rgba(251,251,249,.92);
+    backdrop-filter:blur(6px); border-bottom:1px solid var(--line);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1080px; margin:0 auto;}
+  .logo{font-family:'Bebas Neue'; font-size:24px; letter-spacing:.04em;}
+  .logo span{color:var(--signal);}
+  .navlinks{display:flex; gap:26px; font-size:14px; font-weight:500; list-style:none;}
+  .navlinks a{text-decoration:none; opacity:.75; transition:opacity .15s;}
+  .navlinks a:hover{opacity:1;}
+  .navlinks{display:none;}
+  @media(min-width:760px){.navlinks{display:flex;}}
+
+  /* HERO */
+  .hero{padding:96px 0 72px; text-align:center; position:relative;}
+  .hero h1{font-size:clamp(48px,9vw,92px); text-transform:uppercase;}
+  .hero h1 em{font-style:normal; color:var(--signal);}
+  .hero p{max-width:520px; margin:22px auto 34px; color:var(--graphite); font-size:17px;}
+  .hero .actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:640px; margin:56px auto 0;}
+  .stat b{display:block; font-family:'Bebas Neue'; font-size:40px; color:var(--ink);}
+  .stat span{font-size:12px; color:var(--graphite); text-transform:uppercase; letter-spacing:.05em;}
+
+  /* SÃO PAULO */
+  .region{display:grid; gap:40px; align-items:center;}
+  @media(min-width:760px){.region{grid-template-columns:1fr 1fr;}}
+  .region-visual{
+    aspect-ratio:1/1; background:var(--ink); clip-path:polygon(50% 100%,0 0,100% 0);
+    max-width:320px; margin:0 auto;
+  }
+  .region h2{font-size:36px; text-transform:uppercase; margin-bottom:10px;}
+  .region p{color:var(--graphite);}
+
+  /* COMO FUNCIONA */
+  .steps{display:grid; gap:28px; margin-top:48px;}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr);}}
+  .step{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; position:relative; z-index:1;
+  }
+  .step .num{
+    font-family:'Bebas Neue'; font-size:15px; color:var(--signal);
+    border:1px solid var(--signal); width:32px; height:32px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .step h3{font-size:22px; text-transform:uppercase; margin-bottom:8px;}
+  .step p{color:var(--graphite); font-size:14.5px;}
+
+  /* GALERIA */
+  .gallery{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:40px;}
+  @media(min-width:640px){.gallery{grid-template-columns:repeat(4,1fr);}}
+  .gallery figure{
+    aspect-ratio:1/1; border-radius:var(--radius); overflow:hidden;
+    background:linear-gradient(135deg,var(--ink),#3a3c44);
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(255,255,255,.5); font-family:'IBM Plex Mono'; font-size:12px; text-align:center;
+  }
+  .gallery img{width:100%; height:100%; object-fit:cover;}
+  .gallery figcaption{padding:4px;}
+
+  /* VAGAS */
+  .jobs{display:grid; gap:16px; margin-top:40px;}
+  .job{
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    background:var(--white); border:1px solid var(--line); padding:22px 26px; border-radius:var(--radius);
+    flex-wrap:wrap;
+  }
+  .job h3{font-family:'Inter'; font-weight:700; font-size:17px; text-transform:none;}
+  .job p{color:var(--graphite); font-size:14px; margin-top:4px;}
+  .tag{
+    font-family:'IBM Plex Mono'; font-size:11px; text-transform:uppercase;
+    background:var(--paper-alt); border:1px solid var(--line); padding:3px 9px; border-radius:20px;
+    margin-right:6px; display:inline-block; margin-top:8px;
+  }
+
+  /* OFERTAS */
+  .offers{display:grid; gap:20px; margin-top:40px;}
+  @media(min-width:760px){.offers{grid-template-columns:repeat(3,1fr);}}
+  .offer{
+    background:var(--ink); color:var(--white); border-radius:var(--radius); padding:26px;
+    position:relative; overflow:hidden;
+  }
+  .offer .pct{font-family:'Bebas Neue'; font-size:52px; color:var(--signal);}
+  .offer h3{font-size:19px; margin:6px 0 8px; text-transform:uppercase;}
+  .offer p{color:#c7c8cd; font-size:13.5px;}
+
+  /* CONTATO / CAPTURA DE DADOS */
+  .contact-grid{display:grid; gap:40px;}
+  @media(min-width:760px){.contact-grid{grid-template-columns:1fr 1fr;}}
+  form{display:grid; gap:14px;}
+  label{font-size:13px; font-weight:600; margin-bottom:4px; display:block;}
+  input, textarea{
+    width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:var(--radius);
+    font-family:'Inter'; font-size:14px; background:var(--white);
+  }
+  input:focus, textarea:focus{outline:2px solid var(--signal); outline-offset:1px;}
+  #form-status{font-size:13.5px; margin-top:8px; min-height:18px;}
+  #form-status.ok{color:#1a7f37;}
+  #form-status.err{color:var(--signal-dark);}
+
+  .admin-box{
+    background:var(--white); border:1px dashed var(--line); border-radius:var(--radius);
+    padding:26px;
+  }
+  .admin-box p{color:var(--graphite); font-size:14px; margin:10px 0 16px;}
+
+  /* FOOTER / ASSINATURA */
+  footer{background:var(--ink); color:#c7c8cd; padding:48px 0 28px; text-align:center;}
+  footer .signature{
+    font-family:'Bebas Neue'; font-size:22px; color:var(--white); letter-spacing:.03em;
+  }
+  footer .signature span{color:var(--signal);}
+  footer .role{font-family:'IBM Plex Mono'; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#8b8d94; margin-top:6px;}
+  footer .bio{max-width:520px; margin:16px auto 0; font-size:13.5px; color:#9a9ca3;}
+  footer .copyright{margin-top:28px; font-size:12px; color:#5f6169;}
+
+  #cookie-note{
+    position:fixed; left:16px; right:16px; bottom:16px; z-index:60;
+    background:var(--ink); color:#e7e7ea; padding:14px 18px; border-radius:var(--radius);
+    display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    font-size:13px; max-width:640px; margin:0 auto; box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  #cookie-note button{
+    background:var(--signal); color:var(--white); border:none; padding:8px 14px;
+    border-radius:var(--radius); font-weight:600; cursor:pointer; font-size:12.5px;
+  }
+</style>
 </head>
 <body>
 
-<div class="road-noise" aria-hidden="true"></div>
-
-<!-- ===== HEADER ===== -->
-<header class="site-header" id="top">
-  <div class="wrap header-row">
-    <a href="#top" class="brand">
-      <span class="brand-mark">
-        <svg viewBox="0 0 60 60" class="brand-ring" aria-hidden="true">
-          <circle cx="30" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="6 5"/>
-        </svg>
-        <span class="brand-num">20</span>
-      </span>
-      <span class="brand-text">
-        <strong>MILHAS</strong>
-        <em>Cooperativa</em>
-      </span>
-    </a>
-
-    <nav class="main-nav" id="mainNav">
-      <a href="#servicos">Serviços</a>
-      <a href="#rotas">Áreas de cobertura</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#contato">Contato</a>
-    </nav>
-
-    <a class="btn btn-ghost header-cta" href="https://wa.me/5511984731388" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.4-3-.3-.4.3-.4.7-1.3.1-.2.1-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.4C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.2.9.9-3.1-.2-.3C3.5 14.5 3 13.3 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
-      (11) 9 8473-1388
-    </a>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<header>
+  <nav>
+    <div class="logo">20<span>MILHAS</span></div>
+    <ul class="navlinks">
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#vagas">Vagas</a></li>
+      <li><a href="#ofertas">Ofertas</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a class="btn" href="https://wa.me/5511000000000" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+  </nav>
 </header>
 
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="hero-streaks" aria-hidden="true">
-    <span></span><span></span><span></span>
-  </div>
+<div class="route" aria-hidden="true"></div>
 
-  <div class="wrap hero-grid">
-    <div class="hero-copy" data-reveal>
-      <p class="eyebrow">// Motofrete &amp; Delivery</p>
-      <h1>
-        Sua entrega roda <br>
-        com quem <span class="hl">conhece o caminho</span>.
-      </h1>
-      <p class="hero-lead">
-        A Cooperativa 20 Milhas conecta empresas e pessoas a uma rede de
-        motociclistas profissionais, prontos pra rodar Litoral, Interior e
-        São Paulo com responsabilidade, agilidade e confiança.
-      </p>
+<main>
 
-      <div class="hero-badges">
-        <span class="badge"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5.5z"/></svg> Litoral</span>
-        <span class="badge"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5.5z"/></svg> Interior</span>
-        <span class="badge"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5.5z"/></svg> São Paulo</span>
-      </div>
-
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://wa.me/5511984731388" target="_blank" rel="noopener">Pedir agora no WhatsApp</a>
-        <a class="btn btn-outline" href="#servicos">Ver serviços</a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="stat"><span class="stat-num" data-count="20">0</span><span class="stat-label">anos de estrada*</span></div>
-        <div class="stat"><span class="stat-num" data-count="98">0</span><span class="stat-label">% de entregas no prazo</span></div>
-        <div class="stat"><span class="stat-num" data-count="24">0</span><span class="stat-label">h de operação</span></div>
-      </div>
-      <p class="stat-footnote">*experiência somada da equipe cooperada</p>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="eyebrow">Cooperativa de entregas</div>
+    <h1>ENTREGA <em>RÁPIDA</em><br>EM SÃO PAULO</h1>
+    <p>Motociclistas cooperados prontos pra coletar e entregar com agilidade dentro do trânsito da cidade.</p>
+    <div class="actions">
+      <a class="btn" href="https://wa.me/5511000000000" target="_blank" rel="noopener">📲 Chamar agora</a>
+      <a class="btn ghost" href="#como-funciona">Ver como funciona</a>
     </div>
-
-    <div class="hero-art" data-reveal>
-      <svg class="loop-ring loop-ring--hero" viewBox="0 0 400 400" aria-hidden="true">
-        <circle cx="200" cy="200" r="150" class="loop-track"/>
-        <circle cx="200" cy="200" r="150" class="loop-dash"/>
-      </svg>
-      <div class="hero-art-core">
-        <span class="hero-art-num">20</span>
-        <span class="hero-art-word">MILHAS</span>
-      </div>
-      <span class="hero-pin">
-        <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5.5z"/></svg>
-      </span>
+    <div class="stats">
+      <div class="stat"><b>8+</b><span>anos de estrada</span></div>
+      <div class="stat"><b>98%</b><span>entregas no prazo</span></div>
+      <div class="stat"><b>24h</b><span>operação</span></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== MARQUEE ===== -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>RESPONSABILIDADE</span><span>•</span><span>AGILIDADE</span><span>•</span><span>CONFIANÇA</span><span>•</span>
-    <span>RESPONSABILIDADE</span><span>•</span><span>AGILIDADE</span><span>•</span><span>CONFIANÇA</span><span>•</span>
-  </div>
-</div>
-
-<!-- ===== SERVIÇOS ===== -->
-<section class="section" id="servicos">
-  <div class="wrap">
-    <p class="eyebrow" data-reveal>// O que rodamos por você</p>
-    <h2 data-reveal>Serviços feitos <span class="hl">sob medida</span> pra sua entrega</h2>
-
-    <div class="cards" data-reveal>
-      <article class="card">
-        <span class="card-num">01</span>
-        <h3>Entrega expressa</h3>
-        <p>Documentos, encomendas e pedidos com coleta rápida e rastreamento do início ao fim.</p>
-      </article>
-      <article class="card">
-        <span class="card-num">02</span>
-        <h3>Delivery para empresas</h3>
-        <p>Operação fixa ou por demanda para lojas, farmácias, restaurantes e e-commerces.</p>
-      </article>
-      <article class="card">
-        <span class="card-num">03</span>
-        <h3>Moto frete intermunicipal</h3>
-        <p>Cargas leves entre cidades do Litoral e Interior, com motociclista dedicado à rota.</p>
-      </article>
-      <article class="card">
-        <span class="card-num">04</span>
-        <h3>Serviços avulsos</h3>
-        <p>Precisou de uma corrida pontual? Chamamos um cooperado disponível na sua região.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ROTAS / COBERTURA ===== -->
-<section class="section section-dark" id="rotas">
-  <div class="wrap">
-    <p class="eyebrow" data-reveal>// Onde a gente chega</p>
-    <h2 data-reveal>Três frentes, <span class="hl">uma só cooperativa</span></h2>
-
-    <div class="routes" data-reveal>
-      <div class="route">
-        <svg class="route-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5.5z"/></svg>
-        <h3>Litoral</h3>
-        <p>Cobertura nas cidades da costa paulista, incluindo alta temporada e picos de demanda turística.</p>
-      </div>
-      <div class="route">
-        <svg class="route-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5.5z"/></svg>
-        <h3>Interior</h3>
-        <p>Rede de cooperados espalhada pelo interior, ligando cidades vizinhas com rotas frequentes.</p>
-      </div>
-      <div class="route">
-        <svg class="route-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5.5z"/></svg>
-        <h3>São Paulo</h3>
-        <p>Capital e região metropolitana, com foco em agilidade dentro do trânsito da cidade.</p>
+  <!-- SÃO PAULO -->
+  <section class="wrap">
+    <div class="region">
+      <div class="region-visual" aria-hidden="true"></div>
+      <div>
+        <div class="eyebrow">Área de atuação</div>
+        <h2>São Paulo</h2>
+        <p>Capital e região metropolitana, com foco em agilidade dentro do trânsito da cidade. Cada rota é feita por quem conhece os atalhos da cidade de verdade.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== COMO FUNCIONA ===== -->
-<section class="section" id="como-funciona">
-  <div class="wrap">
-    <p class="eyebrow" data-reveal>// Do pedido à entrega</p>
-    <h2 data-reveal>Como funciona</h2>
-
-    <ol class="steps" data-reveal>
-      <li class="step">
-        <span class="step-ring"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="6 5"/></svg><b>1</b></span>
-        <div>
+  <!-- COMO FUNCIONA -->
+  <section class="alt" id="como-funciona">
+    <div class="wrap">
+      <div class="eyebrow">Do pedido à entrega</div>
+      <h2 style="font-size:clamp(32px,6vw,52px); text-transform:uppercase;">Como funciona</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
           <h3>Você chama</h3>
           <p>Envia o pedido pelo WhatsApp com endereço de coleta e entrega.</p>
         </div>
-      </li>
-      <li class="step">
-        <span class="step-ring"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="6 5"/></svg><b>2</b></span>
-        <div>
-          <h3>A gente escala</h3>
-          <p>Um cooperado próximo assume a corrida e sai pra coletar.</p>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Cooperado coleta</h3>
+          <p>Um motociclista da cooperativa mais próximo confirma e sai pra coleta.</p>
         </div>
-      </li>
-      <li class="step">
-        <span class="step-ring"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="6 5"/></svg><b>3</b></span>
-        <div>
-          <h3>Sua carga roda</h3>
-          <p>Trajeto acompanhado até a entrega, com aviso de confirmação.</p>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Entrega rápida</h3>
+          <p>Acompanhe o trajeto e receba a confirmação assim que o pacote chegar.</p>
         </div>
-      </li>
-      <li class="step">
-        <span class="step-ring"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="6 5"/></svg><b>4</b></span>
-        <div>
-          <h3>Chegou</h3>
-          <p>Confirmação de entrega e recibo enviados direto pra você.</p>
-        </div>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ===== CTA / CONTATO ===== -->
-<section class="cta-band" id="contato">
-  <div class="wrap cta-grid" data-reveal>
-    <div class="cta-copy">
-      <p class="eyebrow">// Bora rodar</p>
-      <h2>Fale com a Cooperativa <span class="hl">20 Milhas</span> agora</h2>
-      <p class="hero-lead">Atendimento pelo WhatsApp, todos os dias. Conta pra gente o que precisa entregar.</p>
-
-      <div class="contact-list">
-        <a class="contact-item" href="https://wa.me/5511984731388" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.4-3-.3-.4.3-.4.7-1.3.1-.2.1-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.4C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.2.9.9-3.1-.2-.3C3.5 14.5 3 13.3 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
-          (11) 9 8473-1388
-        </a>
-        <a class="contact-item" href="https://instagram.com/cooperativa20milhas" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.3.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.3 1.1.4 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.3-2.3.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.3-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.3-1.1-.4-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.3 2.3-.4 1.3-.1 1.7-.1 4.9-.1zM12 0C8.7 0 8.3 0 7 .1c-1.3.1-2.2.2-3 .5-.8.3-1.5.7-2.2 1.4C1.1 2.7.7 3.4.4 4.2c-.3.8-.4 1.7-.5 3C0 8.7 0 9.1 0 12.4s0 3.7.1 5c.1 1.3.2 2.2.5 3 .3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.7.4 3 .5 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.2-.2 3-.5.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.4-1.7.5-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.2-2.2-.5-3-.3-.8-.7-1.5-1.4-2.2C21.3 1.1 20.6.7 19.8.4c-.8-.3-1.7-.4-3-.5C15.5 0 15.1 0 12 0z"/><path fill="currentColor" d="M12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM19.8 5.6a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0z"/></svg>
-          @cooperativa20milhas
-        </a>
       </div>
     </div>
+  </section>
 
-    <a class="cta-ring" href="https://wa.me/5511984731388" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
-      <svg class="loop-ring" viewBox="0 0 300 300" aria-hidden="true">
-        <circle cx="150" cy="150" r="120" class="loop-track"/>
-        <circle cx="150" cy="150" r="120" class="loop-dash"/>
-      </svg>
-      <span>Pedir<br>agora</span>
-    </a>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-  <div class="wrap footer-row">
-    <a href="#top" class="brand brand--footer">
-      <span class="brand-mark">
-        <svg viewBox="0 0 60 60" class="brand-ring" aria-hidden="true">
-          <circle cx="30" cy="30" r="24" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="6 5"/>
-        </svg>
-        <span class="brand-num">20</span>
-      </span>
-      <span class="brand-text">
-        <strong>MILHAS</strong>
-        <em>Cooperativa</em>
-      </span>
-    </a>
-
-    <p class="footer-tag">Responsabilidade, agilidade e confiança — Litoral, Interior e São Paulo.</p>
-
-    <div class="footer-social">
-      <a href="https://instagram.com/cooperativa20milhas" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.3.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.3 1.1.4 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.3-2.3.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.3-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.3-1.1-.4-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.3 2.3-.4 1.3-.1 1.7-.1 4.9-.1zM12 0C8.7 0 8.3 0 7 .1c-1.3.1-2.2.2-3 .5-.8.3-1.5.7-2.2 1.4C1.1 2.7.7 3.4.4 4.2c-.3.8-.4 1.7-.5 3C0 8.7 0 9.1 0 12.4s0 3.7.1 5c.1 1.3.2 2.2.5 3 .3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.7.4 3 .5 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.2-.2 3-.5.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.4-1.7.5-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.2-2.2-.5-3-.3-.8-.7-1.5-1.4-2.2C21.3 1.1 20.6.7 19.8.4c-.8-.3-1.7-.4-3-.5C15.5 0 15.1 0 12 0z"/><path fill="currentColor" d="M12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM19.8 5.6a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0z"/></svg>
-      </a>
-      <a href="https://wa.me/5511984731388" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.4-3-.3-.4.3-.4.7-1.3.1-.2.1-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.4C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.2.9.9-3.1-.2-.3C3.5 14.5 3 13.3 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
-      </a>
+  <!-- GALERIA DE FOTOS -->
+  <section id="galeria">
+    <div class="wrap">
+      <div class="eyebrow">Bastidores</div>
+      <h2 style="font-size:clamp(28px,5vw,42px); text-transform:uppercase;">Galeria de fotos</h2>
+      <p style="color:var(--graphite); margin-top:8px; max-width:520px;">
+        Substitua os blocos abaixo pelas suas fotos reais: troque o <code>src</code> das tags <code>&lt;img&gt;</code> no HTML por arquivos em <code>/img/</code>.
+      </p>
+      <div class="gallery">
+        <figure><span>foto-01.jpg</span></figure>
+        <figure><span>foto-02.jpg</span></figure>
+        <figure><span>foto-03.jpg</span></figure>
+        <figure><span>foto-04.jpg</span></figure>
+      </div>
     </div>
-  </div>
-  <div class="wrap footer-bottom">
-    <span>© <span id="year"></span> Cooperativa 20 Milhas. Todos os direitos reservados.</span>
+  </section>
+
+  <!-- VAGAS DE EMPREGO -->
+  <section class="alt" id="vagas">
+    <div class="wrap">
+      <div class="eyebrow">Trabalhe com a gente</div>
+      <h2 style="font-size:clamp(28px,5vw,42px); text-transform:uppercase;">Vagas abertas</h2>
+      <div class="jobs">
+        <div class="job">
+          <div>
+            <h3>Motociclista cooperado</h3>
+            <p>Rotas na zona sul e centro de São Paulo. Moto própria.</p>
+            <span class="tag">Cooperado</span><span class="tag">CNH A</span>
+          </div>
+          <a class="btn ghost" href="https://wa.me/5511000000000?text=Quero%20me%20candidatar%20à%20vaga%20de%20motociclista" target="_blank" rel="noopener">Candidatar-se</a>
+        </div>
+        <div class="job">
+          <div>
+            <h3>Atendente / Despacho</h3>
+            <p>Organização de rotas e atendimento via WhatsApp.</p>
+            <span class="tag">CLT</span><span class="tag">Presencial</span>
+          </div>
+          <a class="btn ghost" href="https://wa.me/5511000000000?text=Quero%20me%20candidatar%20à%20vaga%20de%20atendente" target="_blank" rel="noopener">Candidatar-se</a>
+        </div>
+      </div>
+      <p style="color:var(--graphite); font-size:13px; margin-top:18px;">Exemplos — edite os cargos e links diretamente no HTML (seção <code>#vagas</code>).</p>
+    </div>
+  </section>
+
+  <!-- OFERTAS -->
+  <section id="ofertas">
+    <div class="wrap">
+      <div class="eyebrow">Promoções</div>
+      <h2 style="font-size:clamp(28px,5vw,42px); text-transform:uppercase;">Ofertas</h2>
+      <div class="offers">
+        <div class="offer">
+          <div class="pct">15%</div>
+          <h3>Primeira entrega</h3>
+          <p>Desconto para novos clientes na primeira solicitação pelo WhatsApp.</p>
+        </div>
+        <div class="offer">
+          <div class="pct">2x1</div>
+          <h3>Rotas fixas</h3>
+          <p>Empresas com entregas recorrentes têm condição especial mensal.</p>
+        </div>
+        <div class="offer">
+          <div class="pct">24h</div>
+          <h3>Plantão noturno</h3>
+          <p>Entregas urgentes fora do horário comercial sob consulta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO + CAPTURA / ADMIN -->
+  <section class="alt" id="contato">
+    <div class="wrap">
+      <div class="eyebrow">Fale com a gente</div>
+      <h2 style="font-size:clamp(28px,5vw,42px); text-transform:uppercase; margin-bottom:32px;">Contato & Painel</h2>
+      <div class="contact-grid">
+        <div>
+          <h3 style="font-size:20px; margin-bottom:14px;">Solicitar entrega / orçamento</h3>
+          <form id="lead-form">
+            <!-- campo-armadilha anti-spam: invisível para pessoas, bots costumam preencher -->
+            <div style="position:absolute; left:-9999px;" aria-hidden="true">
+              <label for="website">Não preencha este campo</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+            <div>
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" required>
+            </div>
+            <div>
+              <label for="telefone">Telefone / WhatsApp</label>
+              <input type="tel" id="telefone" name="telefone" required>
+            </div>
+            <div>
+              <label for="mensagem">O que você precisa entregar?</label>
+              <textarea id="mensagem" name="mensagem" rows="3"></textarea>
+            </div>
+            <button class="btn" type="submit">Enviar dados</button>
+            <p id="form-status"></p>
+          </form>
+        </div>
+        <div class="admin-box">
+          <div class="eyebrow" style="margin-bottom:6px;">Área administrativa</div>
+          <h3 style="font-size:19px;">Painel (Google Sheets)</h3>
+          <p>
+            Visitas e dados de clientes enviados pelo formulário são gravados automaticamente na planilha da cooperativa.
+            O acesso ao painel é feito direto pela sua conta Google — por isso não existe login/senha aqui no site
+            (senha em JavaScript pode ser vista por qualquer pessoa; a permissão do Google Sheets é o controle real de acesso).
+          </p>
+          <a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1BiwZdXF5TsYF5s0l7TvB1W1UX4ikvHRaahBZQKjuG9M/edit" target="_blank" rel="noopener">Abrir planilha →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="signature">Desenvolvido por <span>Tony Felipe Martins</span></div>
+    <div class="role">Desenvolvedor de software</div>
+    <p class="bio">
+      Atuação em desenvolvimento web full-stack, construção de landing pages, automações e integração de sistemas —
+      como este projeto, que conecta o site diretamente à planilha de gestão da cooperativa.
+    </p>
+    <div class="copyright">© <span id="year"></span> Cooperativa 20 Milhas. Todos os direitos reservados.</div>
   </div>
 </footer>
 
-<a class="whatsapp-fab" href="https://wa.me/5511984731388" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
-  <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.4-3-.3-.4.3-.4.7-1.3.1-.2.1-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.4C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.2.9.9-3.1-.2-.3C3.5 14.5 3 13.3 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
-</a>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site</title>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f6f9;
-            color: #333;
-        }
-        header {
-            background: #007bff;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        /* Caixa de Autorização de Termos/Métricas */
-        .aviso-autorizacao {
-            background: #fff3cd;
-            color: #856404;
-            padding: 12px;
-            border: 1px solid #ffeeba;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            text-align: center;
-        }
-        section {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .vaga-item, .post-item {
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-        }
-        .vaga-item:last-child { border: none; }
+<div id="cookie-note" role="status">
+  <span>📢 Ao continuar navegando, você autoriza a coleta de métricas de acesso para melhoria do site.</span>
+  <button id="cookie-ok">Entendi</button>
+</div>
 
-        /* ESTILO DA SUA ASSINATURA NO RODAPÉ */
-        footer {
-            margin-top: 40px;
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #ccc;
-            color: #666;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- AVISO DE AUTORIZAÇÃO DE DADOS -->
-    <div class="aviso-autorizacao">
-        📢 <strong>Aviso:</strong> Ao continuar navegando neste site, você autoriza a coleta de métricas de acesso para melhoria do sistema.
-    </div>
-
-    <header>
-        <h1>Painel do Site</h1>
-    </header>
-
-    <!-- 1. SEÇÃO DE GALERIA -->
-    <section id="galeria">
-        <h2>📷 Galeria de Fotos</h2>
-        <p>Espaço reservado para as suas imagens e fotos do projeto.</p>
-    </section>
-
-    <!-- 2. SEÇÃO DE EMPREGOS -->
-    <section id="empregos">
-        <h2>💼 Vagas de Emprego</h2>
-        <div class="vaga-item">
-            <h3>👁️‍🗨️ Título da Vaga</h3>
-            <p>Requisitos e informações sobre a oportunidade de trabalho.</p>
-        </div>
-    </section>
-
-    <!-- 3. SEÇÃO DE POSTS -->
-    <section id="posts">
-        <h2>📝 Publicações e Posts</h2>
-        <div class="post-item">
-            <h3>Título do Post</h3>
-            <p>Conteúdo ou resumo da sua postagem mais recente.</p>
-        </div>
-    </section>
-
-    <!-- 4. SEÇÃO DO ADMIN -->
-    <section id="admin">
-        <h2>🔒 Área Administrativa</h2>
-        <p>Seção para gerenciamento interno e configurações.</p>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- SUA ASSINATURA VISÍVEL NO SITE                           -->
-    <!-- ======================================================== -->
-    <footer>
-        <p>© 2026 - Todos os direitos reservados.</p>
-        <p><strong>Desenvolvido por: [Seu Nome ou Sua Empresa aqui]</strong></p>
-    </footer>
-
-
-    <!-- ======================================================== -->
-    <!-- SCRIPT DE MÊTRICAS                                       -->
-    <!-- ======================================================== -->
-    <script>
-      // ⚠️ APENAS MUDE A URL ABAIXO PELA URL DO SEU GOOGLE APPS SCRIPT
-      const GOOGLE_WEB_APP_URL = 'COLE_AQUI_A_URL_DO_SEU_WEB_APP';
-
-      (function() {
-        fetch('https://ipapi.co/json/')
-          .then(res => res.json())
-          .then(data => {
-            const cidade = data.city || 'Não identificada';
-            const ip = data.ip || 'Não identificado';
-            
-            const urlFinal = `${GOOGLE_WEB_APP_URL}?name=${encodeURIComponent('Acesso Automático')}&contact=${encodeURIComponent('Autorizado pelo Usuário')}&city=${encodeURIComponent(cidade)}&ip=${encodeURIComponent(ip)}`;
-            fetch(urlFinal, { method: 'POST', mode: 'no-cors' });
-          })
-          .catch(() => {
-            const urlFalha = `${GOOGLE_WEB_APP_URL}?name=${encodeURIComponent('Acesso Automático')}&contact=${encodeURIComponent('Autorizado pelo Usuário')}&city=${encodeURIComponent('Erro API')}&ip=${encodeURIComponent('Erro API')}`;
-            fetch(urlFalha, { method: 'POST', mode: 'no-cors' });
-          });
-      })();
-    </script>
+<script src="script.js"></script>
 </body>
+</html>
