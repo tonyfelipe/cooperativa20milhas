@@ -60,7 +60,6 @@
   .btn.ghost{background:transparent; color:var(--ink);}
   .btn.ghost:hover{background:var(--ink); color:var(--white);}
 
-  /* ROTA — elemento de assinatura: uma linha de rota tracejada que costura a página */
   .route{
     position:absolute; left:50%; top:0; bottom:0; width:2px;
     transform:translateX(-50%);
@@ -73,7 +72,6 @@
   }
   @keyframes route-flow{ to{ background-position-y:-28px; } }
 
-  /* HEADER */
   header{
     position:sticky; top:0; z-index:50; background:rgba(251,251,249,.92);
     backdrop-filter:blur(6px); border-bottom:1px solid var(--line);
@@ -87,7 +85,6 @@
   .navlinks{display:none;}
   @media(min-width:760px){.navlinks{display:flex;}}
 
-  /* HERO */
   .hero{padding:96px 0 72px; text-align:center; position:relative;}
   .hero h1{font-size:clamp(48px,9vw,92px); text-transform:uppercase;}
   .hero h1 em{font-style:normal; color:var(--signal);}
@@ -97,7 +94,6 @@
   .stat b{display:block; font-family:'Bebas Neue'; font-size:40px; color:var(--ink);}
   .stat span{font-size:12px; color:var(--graphite); text-transform:uppercase; letter-spacing:.05em;}
 
-  /* SÃO PAULO */
   .region{display:grid; gap:40px; align-items:center;}
   @media(min-width:760px){.region{grid-template-columns:1fr 1fr;}}
   .region-visual{
@@ -107,7 +103,6 @@
   .region h2{font-size:36px; text-transform:uppercase; margin-bottom:10px;}
   .region p{color:var(--graphite);}
 
-  /* COMO FUNCIONA */
   .steps{display:grid; gap:28px; margin-top:48px;}
   @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr);}}
   .step{
@@ -122,7 +117,6 @@
   .step h3{font-size:22px; text-transform:uppercase; margin-bottom:8px;}
   .step p{color:var(--graphite); font-size:14.5px;}
 
-  /* GALERIA */
   .gallery{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:40px;}
   @media(min-width:640px){.gallery{grid-template-columns:repeat(4,1fr);}}
   .gallery figure{
@@ -134,7 +128,6 @@
   .gallery img{width:100%; height:100%; object-fit:cover;}
   .gallery figcaption{padding:4px;}
 
-  /* VAGAS */
   .jobs{display:grid; gap:16px; margin-top:40px;}
   .job{
     display:flex; justify-content:space-between; align-items:center; gap:16px;
@@ -149,7 +142,6 @@
     margin-right:6px; display:inline-block; margin-top:8px;
   }
 
-  /* OFERTAS */
   .offers{display:grid; gap:20px; margin-top:40px;}
   @media(min-width:760px){.offers{grid-template-columns:repeat(3,1fr);}}
   .offer{
@@ -160,7 +152,6 @@
   .offer h3{font-size:19px; margin:6px 0 8px; text-transform:uppercase;}
   .offer p{color:#c7c8cd; font-size:13.5px;}
 
-  /* CONTATO / CAPTURA DE DADOS */
   .contact-grid{display:grid; gap:40px;}
   @media(min-width:760px){.contact-grid{grid-template-columns:1fr 1fr;}}
   form{display:grid; gap:14px;}
@@ -180,7 +171,6 @@
   }
   .admin-box p{color:var(--graphite); font-size:14px; margin:10px 0 16px;}
 
-  /* FOOTER / ASSINATURA */
   footer{background:var(--ink); color:#c7c8cd; padding:48px 0 28px; text-align:center;}
   footer .signature{
     font-family:'Bebas Neue'; font-size:22px; color:var(--white); letter-spacing:.03em;
@@ -222,7 +212,6 @@
 
 <main>
 
-  <!-- HERO -->
   <section class="hero wrap">
     <div class="eyebrow">Cooperativa de entregas</div>
     <h1>ENTREGA <em>RÁPIDA</em><br>EM SÃO PAULO</h1>
@@ -238,7 +227,6 @@
     </div>
   </section>
 
-  <!-- SÃO PAULO -->
   <section class="wrap">
     <div class="region">
       <div class="region-visual" aria-hidden="true"></div>
@@ -250,7 +238,6 @@
     </div>
   </section>
 
-  <!-- COMO FUNCIONA -->
   <section class="alt" id="como-funciona">
     <div class="wrap">
       <div class="eyebrow">Do pedido à entrega</div>
@@ -275,76 +262,43 @@
     </div>
   </section>
 
-  <!-- GALERIA DE FOTOS -->
   <section id="galeria">
     <div class="wrap">
       <div class="eyebrow">Bastidores</div>
       <h2 style="font-size:clamp(28px,5vw,42px); text-transform:uppercase;">Galeria de fotos</h2>
       <p style="color:var(--graphite); margin-top:8px; max-width:520px;">
-        Substitua os blocos abaixo pelas suas fotos reais: troque o <code>src</code> das tags <code>&lt;img&gt;</code> no HTML por arquivos em <code>/img/</code>.
+        As fotos vêm direto da planilha (aba "Galeria") — quem cuida do conteúdo só cola o link da foto lá, sem mexer em código.
       </p>
-      <div class="gallery">
-        <figure><span>foto-01.jpg</span></figure>
-        <figure><span>foto-02.jpg</span></figure>
-        <figure><span>foto-03.jpg</span></figure>
-        <figure><span>foto-04.jpg</span></figure>
+      <div class="gallery" id="gallery-grid">
+        <figure><span>Carregando fotos…</span></figure>
+        <figure><span>Carregando fotos…</span></figure>
+        <figure><span>Carregando fotos…</span></figure>
+        <figure><span>Carregando fotos…</span></figure>
       </div>
     </div>
   </section>
 
-  <!-- VAGAS DE EMPREGO -->
   <section class="alt" id="vagas">
     <div class="wrap">
       <div class="eyebrow">Trabalhe com a gente</div>
       <h2 style="font-size:clamp(28px,5vw,42px); text-transform:uppercase;">Vagas abertas</h2>
-      <div class="jobs">
-        <div class="job">
-          <div>
-            <h3>Motociclista cooperado</h3>
-            <p>Rotas na zona sul e centro de São Paulo. Moto própria.</p>
-            <span class="tag">Cooperado</span><span class="tag">CNH A</span>
-          </div>
-          <a class="btn ghost" href="https://wa.me/5511000000000?text=Quero%20me%20candidatar%20à%20vaga%20de%20motociclista" target="_blank" rel="noopener">Candidatar-se</a>
-        </div>
-        <div class="job">
-          <div>
-            <h3>Atendente / Despacho</h3>
-            <p>Organização de rotas e atendimento via WhatsApp.</p>
-            <span class="tag">CLT</span><span class="tag">Presencial</span>
-          </div>
-          <a class="btn ghost" href="https://wa.me/5511000000000?text=Quero%20me%20candidatar%20à%20vaga%20de%20atendente" target="_blank" rel="noopener">Candidatar-se</a>
-        </div>
+      <div class="jobs" id="jobs-list">
+        <div class="job"><p>Carregando vagas…</p></div>
       </div>
-      <p style="color:var(--graphite); font-size:13px; margin-top:18px;">Exemplos — edite os cargos e links diretamente no HTML (seção <code>#vagas</code>).</p>
+      <p style="color:var(--graphite); font-size:13px; margin-top:18px;">Vagas vêm da planilha, aba "Vagas" — adicione ou remova linhas lá que o site atualiza sozinho.</p>
     </div>
   </section>
 
-  <!-- OFERTAS -->
   <section id="ofertas">
     <div class="wrap">
       <div class="eyebrow">Promoções</div>
       <h2 style="font-size:clamp(28px,5vw,42px); text-transform:uppercase;">Ofertas</h2>
-      <div class="offers">
-        <div class="offer">
-          <div class="pct">15%</div>
-          <h3>Primeira entrega</h3>
-          <p>Desconto para novos clientes na primeira solicitação pelo WhatsApp.</p>
-        </div>
-        <div class="offer">
-          <div class="pct">2x1</div>
-          <h3>Rotas fixas</h3>
-          <p>Empresas com entregas recorrentes têm condição especial mensal.</p>
-        </div>
-        <div class="offer">
-          <div class="pct">24h</div>
-          <h3>Plantão noturno</h3>
-          <p>Entregas urgentes fora do horário comercial sob consulta.</p>
-        </div>
+      <div class="offers" id="offers-list">
+        <div class="offer"><p>Carregando ofertas…</p></div>
       </div>
     </div>
   </section>
 
-  <!-- CONTATO + CAPTURA / ADMIN -->
   <section class="alt" id="contato">
     <div class="wrap">
       <div class="eyebrow">Fale com a gente</div>
@@ -353,7 +307,6 @@
         <div>
           <h3 style="font-size:20px; margin-bottom:14px;">Solicitar entrega / orçamento</h3>
           <form id="lead-form">
-            <!-- campo-armadilha anti-spam: invisível para pessoas, bots costumam preencher -->
             <div style="position:absolute; left:-9999px;" aria-hidden="true">
               <label for="website">Não preencha este campo</label>
               <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
@@ -379,8 +332,7 @@
           <h3 style="font-size:19px;">Painel (Google Sheets)</h3>
           <p>
             Visitas e dados de clientes enviados pelo formulário são gravados automaticamente na planilha da cooperativa.
-            O acesso ao painel é feito direto pela sua conta Google — por isso não existe login/senha aqui no site
-            (senha em JavaScript pode ser vista por qualquer pessoa; a permissão do Google Sheets é o controle real de acesso).
+            O acesso ao painel é feito direto pela sua conta Google — por isso não existe login/senha aqui no site.
           </p>
           <a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1BiwZdXF5TsYF5s0l7TvB1W1UX4ikvHRaahBZQKjuG9M/edit" target="_blank" rel="noopener">Abrir planilha →</a>
         </div>
@@ -392,7 +344,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="signature">Desenvolvido por <span>elaah.digital</span></div>
+    <div class="signature">Desenvolvido por <span>Tony Felipe Martins</span></div>
     <div class="role">Desenvolvedor de software</div>
     <p class="bio">
       Atuação em desenvolvimento web full-stack, construção de landing pages, automações e integração de sistemas —
