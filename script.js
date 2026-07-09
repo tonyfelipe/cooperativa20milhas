@@ -148,12 +148,12 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  if (!WEBAPP_URL || WEBAPP_URL.startsWith("COLE_AQUI")) {
+  if (!WEBAPP_URL || https://script.google.com/macros/s/AKfycbyufQ8wyDnqSfl6zQMolnF_fyVpHD4JAzsCiAe4UkIoZR0P77jpLRxXCw3xe8H0kOmBdA/executa {
     status.textContent = "Painel ainda não configurado. Fale pelo WhatsApp por enquanto.";
     status.className = "err";
     return;
   }
-
+l
   const payload = {
     tipo: "cliente",
     nome,
